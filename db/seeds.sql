@@ -12,10 +12,10 @@ INSERT INTO role (title, salary, department_id) VALUES
     ('Senior Software Engineer', 120000, 1),
     ('HR Manager', 80000, 2),
     ('Legal Counsel', 120000, 3),
-    ('Sales Manager', 90000, 4);
-    ('Sales Associate', 60000, 4);
-    ('Legal Assistant', 50000, 3);
-    ('HR Assistant', 40000, 2);
+    ('Sales Manager', 90000, 4),
+    ('Sales Associate', 60000, 4),
+    ('Legal Assistant', 50000, 3),
+    ('HR Assistant', 40000, 2),
     ('Junior Software Engineer', 80000, 1);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES
