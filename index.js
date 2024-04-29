@@ -56,8 +56,10 @@ function viewAllDepartments() {
     db.viewAllDepartments()
         .then(([rows]) => {
             let departments = rows;
+            console.log('\n');
             console.table(departments);
         })
+        .catch(err => console.log(err))
 }
 
 viewAllDepartments();
