@@ -12,6 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "^8.2.4",
-    "mysql2": "^3.9.7"
+    "mysql2": "^2.1.0"
   }
 }

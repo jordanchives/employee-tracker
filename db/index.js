@@ -32,12 +32,14 @@ deleteEmployee - DELETE FROM employee WHERE id = ?
 viewDepartmentBudgets - SELECT department.name AS department, SUM(role.salary) AS budget FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id GROUP BY department.name
 */
 
+
 class DB {
     constructor(connection) {
         this.connection = connection;
     }
 
     viewAllDepartments() {
+        console.log('viewAllDepartments');
         return this.connection.query(
             'SELECT * FROM department'
         );
@@ -135,3 +137,5 @@ class DB {
         return this.connection.end();
     }
 }
+
+module.exports = new DB(connection);
