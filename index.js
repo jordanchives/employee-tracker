@@ -41,6 +41,7 @@ function displayMainPrompt() {
     inquirer.prompt([
         {
             type: 'list',
+            pageSize: 15,
             name: 'option',
             message: 'What would you like to do?',
             choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', 'Update employee manager', 'View employees by manager', 'View employees by department', 'Delete department', 'Delete role', 'Delete employee', 'View department budgets', 'Quit']
