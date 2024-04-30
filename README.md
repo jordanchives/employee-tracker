@@ -74,7 +74,7 @@ The Employee Tracker is a Node.js application that helps manage employees, roles
 
 ### Video Preview
 
-A video preview of the application can be found [here](https://jordanchives.github.io/employee-tracker/)
+A video preview of the application can be found [here](https://jordanchives.github.io/employee-tracker/index.html)
 
 ## License
 
