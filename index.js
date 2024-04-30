@@ -1,42 +1,14 @@
+// Import required modules
 const inquirer = require('inquirer');
 const db = require('./db');
-/*
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database
-Bonus
-Try to add some additional functionality to your application, such as the ability to do the following:
 
-Update employee managers.
-
-View employees by manager.
-
-View employees by department.
-
-Delete departments, roles, and employees.
-
-View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
-*/
+// Initialize the application
 function init() {
     console.log('Welcome to Employee Manager!');
     displayMainPrompt();
 }
 
-
+// Display the main prompt
 function displayMainPrompt() {
     inquirer.prompt([
         {
@@ -44,9 +16,10 @@ function displayMainPrompt() {
             pageSize: 15,
             name: 'option',
             message: 'What would you like to do?',
-            choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', 'Update employee manager', 'View employees by manager', 'View employees by department', 'Delete department', 'Delete role', 'Delete employee', 'View department budgets', 'Quit']
+            choices: ['View all departments', 'View all roles', 'View all employees', 'View employees by manager', 'View employees by department', 'View department budgets', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role', 'Update employee manager', 'Delete department', 'Delete role', 'Delete employee', 'Quit']
         }
     ]).then(response => {
+        // Call the appropriate function based on the user's choice
         switch (response.option) {
             case 'View all departments':
                 viewAllDepartments();
@@ -97,33 +70,18 @@ function displayMainPrompt() {
 
 }
 
-/*
+// Define the functions that will be called based on the user's choice
 
-viewAllDepartments() - returns a promise that resolves with all departments
-viewAllRoles() - returns a promise that resolves with all roles
-viewAllEmployees() - returns a promise that resolves with all employees
-addDepartment(department) - returns a promise that resolves with the result of adding a department
-addRole(role) - returns a promise that resolves with the result of adding a role
-addEmployee(employee) - returns a promise that resolves with the result of adding an employee
-updateEmployeeRole(employeeId, roleId) - returns a promise that resolves with the result of updating an employee's role
-updateEmployeeManager(employeeId, managerId) - returns a promise that resolves with the result of updating an employee's manager
-viewEmployeesByManager(managerId) - returns a promise that resolves with all employees with the given manager
-viewEmployeesByDepartment(departmentId) - returns a promise that resolves with all employees in the given department
-deleteDepartment(departmentId) - returns a promise that resolves with the result of deleting a department
-deleteRole(roleId) - returns a promise that resolves with the result of deleting a role
-deleteEmployee(employeeId) - returns a promise that resolves with the result of deleting an employee
-viewDepartmentBudgets() - returns a promise that resolves with the department budgets
-close() - closes the connection
-
-*/
-
+// View all departments
 function viewAllDepartments() {
     db.viewAllDepartments().then(([rows]) => {
+        const array =
         console.table(rows);
         displayMainPrompt();
     });
 }
 
+// View all roles
 function viewAllRoles() {
     db.viewAllRoles().then(([rows]) => {
         console.table(rows);
@@ -131,6 +89,8 @@ function viewAllRoles() {
     });
 }
 
+
+// View all employees
 function viewAllEmployees() {
     db.viewAllEmployees().then(([rows]) => {
         console.table(rows);
@@ -138,6 +98,7 @@ function viewAllEmployees() {
     });
 }
 
+// Add a department
 function addDepartment() {
     inquirer.prompt([
         {
@@ -153,6 +114,7 @@ function addDepartment() {
     });
 }
 
+// Add a role
 function addRole() {
     inquirer.prompt([
         {
@@ -178,6 +140,7 @@ function addRole() {
     });
 }
 
+// Add an employee
 function addEmployee() {
     inquirer.prompt([
         {
@@ -208,6 +171,7 @@ function addEmployee() {
     });
 }
 
+// Update an employee's role
 function updateEmployeeRole() {
     inquirer.prompt([
         {
@@ -228,6 +192,7 @@ function updateEmployeeRole() {
     });
 }
 
+// Update an employee's manager
 function updateEmployeeManager() {
     inquirer.prompt([
         {
@@ -248,6 +213,7 @@ function updateEmployeeManager() {
     });
 }
 
+// View all employees under a manager
 function viewEmployeesByManager() {
     inquirer.prompt([
         {
@@ -263,6 +229,7 @@ function viewEmployeesByManager() {
     });
 }
 
+// View all employees in a department
 function viewEmployeesByDepartment() {
     inquirer.prompt([
         {
@@ -278,6 +245,7 @@ function viewEmployeesByDepartment() {
     });
 }
 
+// Delete a department
 function deleteDepartment() {
     inquirer.prompt([
         {
@@ -293,6 +261,7 @@ function deleteDepartment() {
     });
 }
 
+// Delete a role
 function deleteRole() {
     inquirer.prompt([
         {
@@ -308,6 +277,7 @@ function deleteRole() {
     });
 }
 
+// Delete an employee
 function deleteEmployee() {
     inquirer.prompt([
         {
@@ -323,6 +293,7 @@ function deleteEmployee() {
     });
 }
 
+// View the salary budget of a department
 function viewDepartmentBudgets() {
     db.viewDepartmentBudgets().then(([rows]) => {
         console.table(rows);
@@ -330,10 +301,12 @@ function viewDepartmentBudgets() {
     });
 }
 
+// Quit the application
 function quit() {
     db.close();
     console.log('Goodbye!');
     process.exit();
 }
 
+// Call the init function to start the application
 init();
